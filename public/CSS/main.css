@@ -1,3 +1,32 @@
 /*!
 * test css
 */
+
+html, body {
+    height: 100%;
+  }
+
+.container {
+    height: 100%;
+    display: grid ;
+    grid-template-columns: [col1] 20%  [col2] auto [col3] 20% ;
+    grid-template-rows: [row1] 70% [row2] auto ;
+    grid-template-areas: 
+    ". hand ."
+    "left hand right";
+    justify-items: center;
+  }
+
+  .left-arrow {
+    grid-area: left ;
+  }
+
+  .hand {
+    grid-area: hand ;
+    height: 100%; 
+    width: 100%;
+  }
+
+  .right-arrow {
+    grid-area: right ;
+  }
