@@ -1,0 +1,22 @@
+{
+  "name": "timi",
+  "version": "1.0.0",
+  "description": "a tool for a diagnosis in psychomotor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natoine/timi.git"
+  },
+  "author": "natoine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natoine/timi/issues"
+  },
+  "homepage": "https://github.com/natoine/timi#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
