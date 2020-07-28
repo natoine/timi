@@ -11,8 +11,9 @@ app.get('/', function (req, res) {
   res.render('index')
 });
 
-app.get('/main', function (req, res) {
-    res.render('main')
+app.get('/main/:id', function (req, res) {
+    var id = req.params.id ;
+    res.render('main', {id: id})
 })
 
 app.listen(port, function () {
