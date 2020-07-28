@@ -10,7 +10,60 @@
 <body>
     Bienvenue sur notre application TIMI !
 
-    <button name="button-launch" onclick="location.href = '/main/1';">Lancer un test TIMI</button>
+    <form action="/main" method="POST" class="form-timi">
+        <div class="form">
+          <label for="codepatient">Saisir le code patient : </label>
+          <input type="text" name="codepatient" id="codepatient">
+        </div>
+        <div class="form">
+            <label for="age">Saisir l'âge du patient en années : </label>
+            <input type="text" name="age" id="age">
+        </div>
+        <div class="form">
+            <label for="sex">Saisir le sexe du patient : </label>
+            <input list="sexchoice" id="sex" name="sex" />
+
+            <datalist id="sexchoice">
+                <option value="1. Garçon"></option>
+                <option value="2. Fille"></option>
+            </datalist>
+        </div>
+        <div class="form">
+            <label for="lat">Saisir la latéralité du patient : </label>
+            <input list="latchoice" id="lat" name="lat" />
+
+            <datalist id="latchoice">
+                <option value="1. Droitier"></option>
+                <option value="2. Gaucher"></option>
+                <option value="3. Non latéralisé"></option>
+            </datalist>
+        </div>
+        <div class="form">
+            <label for="csp1">Catégorie Socio-Professionnelle Parent 1 :</label>
+            <input list="csp" id="csp1" name="csp1" />
+        </div>
+        <div class="form">
+            <label for="csp2">Catégorie Socio-Professionnelle Parent 2 :</label>
+            <input list="csp" id="csp2" name="csp2" />
+            <datalist id="csp">
+
+                <option value="0. Agriculteurs exploitants"></option>
+                <option value="1. Salariés de l’agriculture"></option>
+                <option value="2. Patrons de l’industrie et du commerce"></option>
+                <option value="3. Professions libérales et cadres supérieurs"></option>
+                <option value="4. Cadres moyens"></option>
+                <option value="5. Employés"></option>
+                <option value="6. Ouvriers"></option>
+                <option value="7. Personnels de services"></option>
+                <option value="8. Autres catégories"></option>
+
+            </datalist>
+        </div>
+        <div class="form-example">
+          <input type="submit" value="Lancer le test !">
+        </div>
+      </form>
+
 </body>
 
 </html>
