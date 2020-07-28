@@ -6,8 +6,7 @@ const port = process.env.PORT || 3000
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'));
-var bodyParser = require('body-parser')
-app.use(bodyParser())
+app.use(express.urlencoded());
 
 app.get('/', function (req, res) {
   res.render('index')
