@@ -25,14 +25,7 @@ app.get('/main/:id', function (req, res) {
 //redirects to the first hand picture test
 app.post('/main', function (req, res) {
   console.log("post body", req.body)
-  let user = {};
-  user.codepatient = req.body.codepatient ;
-  user.age = req.body.age ;
-  user.sex = req.body.sex ;
-  user.lat = req.body.lat ;
-  user.csp1 = req.body.csp1 ;
-  user.csp2 = req.body.csp2 ;
-
+  let user = req.body.user ;
   req.session.user = user ;
 
   res.redirect(301, '/main/1')
