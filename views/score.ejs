@@ -1,0 +1,65 @@
+<!-- views/score.ejs -->
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Score TIMI</title>
+    <meta descr="Résultat de votre TIMI">
+   
+</head>
+<body>
+    <div id=metadata>
+        <table>
+            <tr>
+                <td>code patient</td>
+                <td><%=user.codepatient%></td>
+            </tr>
+            <tr>
+                <td>âge</td>
+                <td><%=user.age%></td>
+            </tr>
+            <tr>
+                <td>sexe</td>
+                <td><%=user.sex%></td>
+            </tr>
+            <tr>
+                <td>latéralisation</td>
+                <td><%=user.lat%></td>
+            </tr>
+            <tr>
+                <td>CSP 1</td>
+                <td><%=user.csp1%></td>
+            </tr>
+            <tr>
+                <td>CSP 2</td>
+                <td><%=user.csp2%></td>
+            </tr>
+            <tr>
+                <td>UserAgent</td>
+                <td><%=user.useragent%></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id=answers>
+        <table>
+            <%
+                let answerslength = user.answers.length ;
+                let count = 0 ;
+                for(count ; count < answerslength ; count ++)
+                {
+                    %>
+                    <tr>
+                        <td><%=user.answers[count].diapo%></td>
+                        <td><%=user.answers[count].timing%> sec</td>
+                        <td><%=user.answers[count].choice%></td>
+                    </tr>
+                    <%
+                }
+            %>
+        </table>
+    </div>
+
+</body>
+
+</html>
