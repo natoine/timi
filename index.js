@@ -9,7 +9,7 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'));
 app.use(express.json());
 const sessionpass = process.env.SESSIONPASS || "fordevsessionpass"
-app.use(session({secret: sessionpass}));
+app.use(session({secret: sessionpass, resave:true, saveUninitialized:true}));
 
 app.get('/', function (req, res) {
   res.render('index')
