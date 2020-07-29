@@ -9,12 +9,18 @@
    
 </head>
 <body>
-    <div class=container>
+
+    <div class=wait id=waitcontent>
+        <p>Patientez 2 secondes ...</p>
+    </div>
+
+    <div class=container id=maincontent>
         <button id=leftbtn class=left-arrow><img src="/img/fleche gauche.png" title="main gauche"></button>
         <img class=hand src="/img/mains/Diapositive<%= id %>.JPG" title="quelle main est-ce?">
         <button id=rightbtn class=right-arrow><img src="/img/fleche droite.png" title="main droite"></button>
     </div>
 
+    <script src="/JS/waittwosec.js"></script>
     <script src="/JS/postformmain.js">
     </script>
 </body>

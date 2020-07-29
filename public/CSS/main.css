@@ -6,6 +6,10 @@ html, body {
     height: 100%;
   }
 
+.wait {
+  visibility: visible;
+}
+
 .container {
     height: 100%;
     display: grid ;
@@ -15,6 +19,7 @@ html, body {
     ". hand ."
     "left hand right";
     justify-items: center;
+    visibility: hidden;
   }
 
   .left-arrow {
