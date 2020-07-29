@@ -3,6 +3,7 @@
 var express = require('express');
 var session = require('express-session');
 var app = express();
+var Json2csvparser = require('json2csv').Parser;
 const port = process.env.PORT || 3000
 
 app.set('view engine', 'ejs')
@@ -36,7 +37,8 @@ app.get('/main/:id', function (req, res) {
     }
 })
 
-//scores to the end
+
+//sends html, JSON or CSV depending on content negociation
 app.get('/score', function(req, res){
   let user = req.session.user ;
   if(!user) res.redirect(307, "/");
@@ -45,10 +47,27 @@ app.get('/score', function(req, res){
     let questioncount = user.answers.length ;
     if(questioncount < 48) res.redirect(307, '/main/' + questioncount)
     else {
-      res.render('score', {user: user});
+          res.format({
+            'text/html': function () {
+              res.render('score', {user: user});
+            },
+            'application/json': function () {
+                res.json(user);
+            },
+
+            'application/csv': function () {
+                let fields = ["age","sex","lat","csp1","csp2","useragent","answers"];
+                let json2csvParser = new Json2csvparser({ fields })
+                let csv = json2csvParser.parse(user)
+                //res.setHeader('Content-disposition', 'attachment; filename=score.csv'); //do nothing
+                res.set('Content-Type', 'text/csv');
+                res.status(200).send(csv);
+            }
+          })
     }
   }
 })
+
 
 //receives index form with patient data
 //redirects to the first hand picture test
