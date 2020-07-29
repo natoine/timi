@@ -1,19 +1,23 @@
 'use strict'
 
 var express = require('express');
+var session = require('express-session');
 var app = express();
 const port = process.env.PORT || 3000
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'));
-app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+const sessionpass = process.env.SESSIONPASS || "fordevsessionpass"
+app.use(session({secret: sessionpass, resave:true, saveUninitialized:true}));
 
 app.get('/', function (req, res) {
   res.render('index')
 });
 
 app.get('/main/:id', function (req, res) {
-    var id = req.params.id ;
+    let id = req.params.id ;
+    console.log("user session", req.session.user)
     res.render('main', {id: id})
 })
 
@@ -21,7 +25,7 @@ app.get('/main/:id', function (req, res) {
 //redirects to the first hand picture test
 app.post('/main', function (req, res) {
   console.log("post body", req.body)
-  var user = {};
+  let user = {};
   user.codepatient = req.body.codepatient ;
   user.age = req.body.age ;
   user.sex = req.body.sex ;
@@ -29,7 +33,9 @@ app.post('/main', function (req, res) {
   user.csp1 = req.body.csp1 ;
   user.csp2 = req.body.csp2 ;
 
-  console.log("user", user)
+  req.session.user = user ;
+
+  res.redirect(301, '/main/1')
 })
 
 app.listen(port, function () {
