@@ -11,6 +11,17 @@ function sendform(choice)
     let pathArray = window.location.pathname.split('/');
     let answer = {count:pathArray[2] , timing: timing, choice: choice}
     console.log("answer", answer)
+
+    fetch('/answer', {
+        method: 'POST',
+        redirect: 'follow',
+  		body: JSON.stringify({ answer : answer }),
+          headers: {
+                'Content-Type': 'application/json'
+          }
+    }).then(function(response){
+        if (response.redirected) window.location.href = response.url;
+    })
 }
 
 leftbtn.onclick = function()

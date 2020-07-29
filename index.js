@@ -24,11 +24,17 @@ app.get('/main/:id', function (req, res) {
 //receives index form with patient data
 //redirects to the first hand picture test
 app.post('/main', function (req, res) {
-  console.log("post body", req.body)
+  //console.log("post body", req.body)
   let user = req.body.user ;
   req.session.user = user ;
 
   res.redirect(301, '/main/1')
+})
+
+//receives answer
+//redirects to the correct next question
+app.post('/answer', function (req, res) {
+  console.log("post body", req.body)
 })
 
 app.listen(port, function () {
