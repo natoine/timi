@@ -9,13 +9,13 @@ function sendform(choice)
 {
     let timing = Math.floor( (Date.now() - onloadingmoment) / 1000 ) ; // seconds
     let pathArray = window.location.pathname.split('/');
-    let answer = {count:pathArray[2] , timing: timing, choice: choice}
+    let answer = {diapo: pathArray[2] , timing: timing, choice: choice}
     console.log("answer", answer)
 
     fetch('/answer', {
         method: 'POST',
         redirect: 'follow',
-  		body: JSON.stringify({ answer : answer }),
+  		body: JSON.stringify(answer),
           headers: {
                 'Content-Type': 'application/json'
           }
