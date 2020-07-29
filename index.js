@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/main/:id', function (req, res) {
-    var id = req.params.id ;
+    let id = req.params.id ;
     res.render('main', {id: id})
 })
 
@@ -21,7 +21,7 @@ app.get('/main/:id', function (req, res) {
 //redirects to the first hand picture test
 app.post('/main', function (req, res) {
   console.log("post body", req.body)
-  var user = {};
+  let user = {};
   user.codepatient = req.body.codepatient ;
   user.age = req.body.age ;
   user.sex = req.body.sex ;
@@ -30,6 +30,8 @@ app.post('/main', function (req, res) {
   user.csp2 = req.body.csp2 ;
 
   console.log("user", user)
+
+  res.redirect(301, '/main/1')
 })
 
 app.listen(port, function () {

@@ -13,9 +13,12 @@ submitbuttn.onclick = function(){
     
     fetch('/main', {
         method: 'POST',
+        redirect: 'follow',
   		body: JSON.stringify(user),
           headers: {
                 'Content-Type': 'application/json'
           }
+    }).then(function(response){
+        if (response.redirected) window.location.href = response.url;
     })
 }
