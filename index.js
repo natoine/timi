@@ -38,7 +38,12 @@ app.get('/main/:id', function (req, res) {
 
 //scores to the end
 app.get('/score', function(req, res){
-  res.send('over!');
+  let user = req.session.user ;
+  let questioncount = user.answers.length ;
+  if(questioncount < 48) res.redirect(307, '/main/' + questioncount)
+  else {
+    res.render('score', {user: user});
+  }
 })
 
 //receives index form with patient data
