@@ -16,9 +16,12 @@ app.get('/', function (req, res) {
 });
 
 app.get('/main/:id', function (req, res) {
-    let id = req.params.id ;
-    //console.log("user session", req.session.user)
-    res.render('main', {id: id})
+    if(!req.session.user) res.redirect(307,'/')
+    else {
+      let id = req.params.id ;
+      //console.log("user session", req.session.user)
+      res.render('main', {id: id})
+    }
 })
 
 //scores to the end
