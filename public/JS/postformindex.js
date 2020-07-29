@@ -10,5 +10,12 @@ submitbuttn.onclick = function(){
     user.lat = document.getElementById("lat").value ;
     user.csp1 = document.getElementById("csp1").value ;
     user.csp2 = document.getElementById("csp2").value ;
-    console.log("user", user)
+    
+    fetch('/main', {
+        method: 'POST',
+  		body: JSON.stringify(user),
+          headers: {
+                'Content-Type': 'application/json'
+          }
+    })
 }
