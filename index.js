@@ -39,10 +39,14 @@ app.get('/main/:id', function (req, res) {
 //scores to the end
 app.get('/score', function(req, res){
   let user = req.session.user ;
-  let questioncount = user.answers.length ;
-  if(questioncount < 48) res.redirect(307, '/main/' + questioncount)
+  if(!user) res.redirect(307, "/");
+  else if(user.answers.length === 0) res.redirect(307, "/");
   else {
-    res.render('score', {user: user});
+    let questioncount = user.answers.length ;
+    if(questioncount < 48) res.redirect(307, '/main/' + questioncount)
+    else {
+      res.render('score', {user: user});
+    }
   }
 })
 
