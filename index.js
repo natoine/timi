@@ -106,7 +106,6 @@ app.post('/answer', function (req, res) {
     //add the answer
     req.session.user.answers.push(answer);
   }
-  console.log("user", req.session.user);
   let next = parseInt(answer.diapo) + 1;
   if(next <= 48) res.redirect(301, '/main/'+next);
   else 
@@ -122,12 +121,13 @@ app.post('/answer', function (req, res) {
       performance = performance + answer.perf ;
     })
     req.session.user.goodanswers = countgoodanswers ;
-    req.session.usercompletetiming = completetiming ;
-    req.session.avgtiming = completetiming / 48 ;
-    req.session.globalperf = performance ;
-    req.session.indexperf = req.session.avgtiming / countgoodanswers ;
+    req.session.user.completetiming = completetiming ;
+    req.session.user.avgtiming = completetiming / 48 ;
+    req.session.user.globalperf = performance ;
+    req.session.user.indexperf = req.session.user.avgtiming / countgoodanswers ;
 
-
+    console.log("user with stats", req.session.user);
+ 
     //redircet to score
     res.redirect(301, '/score');
   }
