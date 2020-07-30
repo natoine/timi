@@ -114,10 +114,18 @@ app.post('/answer', function (req, res) {
     //compute stats
     let answers = req.session.user.answers ;
     let countgoodanswers = 0 ;
+    let completetiming = 0 ;
+    let performance = 0 ;
     answers.map(answer => {
       if(answer.value) countgoodanswers++ ;
+      completetiming = completetiming + answer.timing ;
+      performance = performance + answer.perf ;
     })
-    console.log("nb good answers", countgoodanswers);
+    req.session.user.goodanswers = countgoodanswers ;
+    req.session.usercompletetiming = completetiming ;
+    req.session.avgtiming = completetiming / 48 ;
+    req.session.globalperf = performance ;
+    req.session.indexperf = req.session.avgtiming / countgoodanswers ;
 
 
     //redircet to score
