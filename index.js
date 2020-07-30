@@ -12,6 +12,10 @@ app.use(express.json());
 const sessionpass = process.env.SESSIONPASS || "fordevsessionpass"
 app.use(session({secret: sessionpass, resave:true, saveUninitialized:true}));
 
+const goodanswers = ['left','left','right','left','right','left','right','left','right','right','left','right','left','right','right','left','right','right','left',
+  'right','left','right','right','left','left','left','right','right','left','right','left','left','right','left','left','right','right','left','left','right',
+  'left','left','left','right','right','left','right','right'] ;
+
 app.get('/', function (req, res) {
   res.render('index')
 });
@@ -86,14 +90,47 @@ app.post('/answer', function (req, res) {
   let answer = req.body ;
   //verify coherency
   let answerslength = req.session.user.answers.length ;
-  if(answerslength === parseInt(req.body.diapo) - 1)
+  let index = parseInt(req.body.diapo) - 1 ;
+  if(answerslength === index)
   {
+    //test if the answer is good or not
+    answer.value = answer.choice === goodanswers[index];
+    //compute performance (if good answer and timing < 2sec 4pts, if good answer and 2 < timing < 3sec 3pts, if good answer and 3 < timing < 4 2pts, if good answer and timing > 4 1pt)
+    if(! answer.value) answer.perf = 0 ;
+    else {
+      if(answer.timing > 4000) answer.perf = 1 ;
+      else if(answer.timing > 3000) answer.perf = 2 ;
+      else if(answer.timing > 2000) answer.perf = 3 ;
+      else answer.perf = 4 ;
+    }
+    //add the answer
     req.session.user.answers.push(answer);
   }
-  console.log("user", req.session.user);
   let next = parseInt(answer.diapo) + 1;
   if(next <= 48) res.redirect(301, '/main/'+next);
-  else res.redirect(301, '/score');
+  else 
+  {
+    //compute stats
+    let answers = req.session.user.answers ;
+    let countgoodanswers = 0 ;
+    let completetiming = 0 ;
+    let performance = 0 ;
+    answers.map(answer => {
+      if(answer.value) countgoodanswers++ ;
+      completetiming = completetiming + answer.timing ;
+      performance = performance + answer.perf ;
+    })
+    req.session.user.goodanswers = countgoodanswers ;
+    req.session.user.completetiming = completetiming ;
+    req.session.user.avgtiming = completetiming / 48 ;
+    req.session.user.globalperf = performance ;
+    req.session.user.indexperf = req.session.user.avgtiming / countgoodanswers ;
+
+    console.log("user with stats", req.session.user);
+ 
+    //redircet to score
+    res.redirect(301, '/score');
+  }
 })
 
 app.listen(port, function () {
