@@ -7,7 +7,7 @@ let rightbtn = document.getElementById("rightbtn");
 
 function sendform(choice)
 {
-    let timing = Math.floor( (Date.now() - onloadingmoment - delay) / 1000 ) ; // seconds
+    let timing = Math.floor( (Date.now() - onloadingmoment - delay) ) ; // milliseconds
     let pathArray = window.location.pathname.split('/');
     let answer = {diapo: pathArray[2] , timing: timing, choice: choice}
     console.log("answer", answer)
