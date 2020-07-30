@@ -84,7 +84,12 @@ app.post('/main', function (req, res) {
 app.post('/answer', function (req, res) {
   //console.log("post body", req.body)
   let answer = req.body ;
-  req.session.user.answers.push(answer);
+  //verify coherency
+  let answerslength = req.session.user.answers.length ;
+  if(answerslength === parseInt(req.body.diapo) - 1)
+  {
+    req.session.user.answers.push(answer);
+  }
   console.log("user", req.session.user);
   let next = parseInt(answer.diapo) + 1;
   if(next <= 48) res.redirect(301, '/main/'+next);
