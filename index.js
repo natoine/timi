@@ -95,6 +95,14 @@ app.post('/answer', function (req, res) {
   {
     //test if the answer is good or not
     answer.value = answer.choice === goodanswers[index];
+    //compute performance (if good answer and timing < 2sec 4pts, if good answer and 2 < timing < 3sec 3pts, if good answer and 3 < timing < 4 2pts, if good answer and timing > 4 1pt)
+    if(! answer.value) answer.perf = 0 ;
+    else {
+      if(answer.timing > 4000) answer.perf = 1 ;
+      else if(answer.timing > 3000) answer.perf = 2 ;
+      else if(answer.timing > 2000) answer.perf = 3 ;
+      else answer.perf = 4 ;
+    }
     //add the answer
     req.session.user.answers.push(answer);
   }
