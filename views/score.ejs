@@ -48,6 +48,27 @@
                 <td>UserAgent</td>
                 <td><%=user.useragent%></td>
             </tr>
+            <tr>
+                <td>total de bonne réponses</td>
+                <td><%=user.goodanswers%></td>
+            </tr>
+            <tr>
+                <td>temps total</td>
+                <td><%=user.completetiming%> ms</td>
+            </tr>
+            <tr>
+                <td>temps moyen de réponse</td>
+                <td><%=user.avgtiming%> ms</td>
+            </tr>            
+            <tr>
+                <td>index de performance ( temps de réponse moyen / nombre de bonnes réponses )</td>
+                <td><%=user.indexperf%></td>
+            </tr>           
+            <tr>
+                <td>Performance Global ( somme des scores )</td>
+                <td><%=user.globalperf%></td>
+            </tr>
+
         </table>
     </div>
 
@@ -63,6 +84,8 @@
                         <td><%=user.answers[count].diapo%></td>
                         <td><%=user.answers[count].timing%> millisec</td>
                         <td><%=user.answers[count].choice%></td>
+                        <td><%=user.answers[count].value%></td>
+                        <td><%=user.answers[count].perf%></td>
                     </tr>
                     <%
                 }

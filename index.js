@@ -126,8 +126,6 @@ app.post('/answer', function (req, res) {
     req.session.user.globalperf = performance ;
     req.session.user.indexperf = req.session.user.avgtiming / countgoodanswers ;
 
-    console.log("user with stats", req.session.user);
- 
     //redircet to score
     res.redirect(301, '/score');
   }
