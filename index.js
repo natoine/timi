@@ -12,6 +12,10 @@ app.use(express.json());
 const sessionpass = process.env.SESSIONPASS || "fordevsessionpass"
 app.use(session({secret: sessionpass, resave:true, saveUninitialized:true}));
 
+const goodanswers = ['left','left','right','left','right','left','right','left','right','right','left','right','left','right','right','left','right','right','left',
+  'right','left','right','right','left','left','left','right','right','left','right','left','left','right','left','left','right','right','left','left','right',
+  'left','left','left','right','right','left','right','right'] ;
+
 app.get('/', function (req, res) {
   res.render('index')
 });
@@ -86,8 +90,12 @@ app.post('/answer', function (req, res) {
   let answer = req.body ;
   //verify coherency
   let answerslength = req.session.user.answers.length ;
-  if(answerslength === parseInt(req.body.diapo) - 1)
+  let index = parseInt(req.body.diapo) - 1 ;
+  if(answerslength === index)
   {
+    //test if the answer is good or not
+    answer.value = answer.choice === goodanswers[index];
+    //add the answer
     req.session.user.answers.push(answer);
   }
   console.log("user", req.session.user);
