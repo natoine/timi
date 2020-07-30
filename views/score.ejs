@@ -8,6 +8,16 @@
    
 </head>
 <body>
+
+    <div id=download>
+        <table>
+            <tr>
+                <td><button id=csvbtn>CSV</button></td>
+                <td><button id=jsonbtn>JSON</button></td>
+            </tr>
+        </table>
+    </div>
+
     <div id=metadata>
         <table>
             <tr>
@@ -51,7 +61,7 @@
                     %>
                     <tr>
                         <td><%=user.answers[count].diapo%></td>
-                        <td><%=user.answers[count].timing%> sec</td>
+                        <td><%=user.answers[count].timing%> millisec</td>
                         <td><%=user.answers[count].choice%></td>
                     </tr>
                     <%
@@ -60,6 +70,7 @@
         </table>
     </div>
 
+    <script src="/JS/fetchscore.js"></script>
 </body>
 
 </html>
