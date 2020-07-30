@@ -109,7 +109,20 @@ app.post('/answer', function (req, res) {
   console.log("user", req.session.user);
   let next = parseInt(answer.diapo) + 1;
   if(next <= 48) res.redirect(301, '/main/'+next);
-  else res.redirect(301, '/score');
+  else 
+  {
+    //compute stats
+    let answers = req.session.user.answers ;
+    let countgoodanswers = 0 ;
+    answers.map(answer => {
+      if(answer.value) countgoodanswers++ ;
+    })
+    console.log("nb good answers", countgoodanswers);
+
+
+    //redircet to score
+    res.redirect(301, '/score');
+  }
 })
 
 app.listen(port, function () {
