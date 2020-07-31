@@ -5,6 +5,17 @@ var session = require('express-session');
 var app = express();
 const port = process.env.PORT || 3000
 
+const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
+const csvStringifier = createCsvStringifier({
+    header: [
+        /*{id: 'codepatient', title: 'CODEPATIENT'},
+        {id: 'lat', title: 'LATERALITY'},*/
+        {id: 'diapo', title:"DIAPO"},
+        {id: 'timing', title: "TIMING"},
+        {id: 'choice', title: "CHOICE"}
+    ]
+});
+
 app.set('view engine', 'ejs')
 app.use(express.static('public'));
 app.use(express.json());
@@ -65,7 +76,10 @@ app.get('/score', function(req, res){
               res.set('Content-Type', 'text/csv');
               let csv ;
               //build a CSV string with csv-writer
-              
+
+              csv = csvStringifier.stringifyRecords(user.answers);
+              console.log("csv", csv);              
+
               res.end(csv);
 
             }
