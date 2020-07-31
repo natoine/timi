@@ -94,7 +94,7 @@ app.get('/score', function(req, res){
               //build a CSV string with csv-writer
               let users = [user];
               csv = csvStringifierUser.getHeaderString().concat(csvStringifierUser.stringifyRecords(users));
-              //csv.concat(csvStringifierAnswers.getHeaderString()).concat(csvStringifierAnswers.stringifyRecords(user.answers));
+              csv = csv.concat(csvStringifierAnswers.getHeaderString()).concat(csvStringifierAnswers.stringifyRecords(user.answers));
               
               console.log("csv", csv);              
 
