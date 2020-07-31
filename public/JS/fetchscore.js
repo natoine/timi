@@ -5,15 +5,18 @@ function fetchscore(type){
         method: 'GET',
         redirect: 'follow',
           headers: {
-                'Accept': 'application/' + type,
-                'Content-Disposition': "attachment; filename='score." + type +"'"
+                'Accept': 'application/' + type
           }
     }).then(function(response){
         if (response.redirected) window.location.href = response.url;
-        else {
+        else 
+        {
                 response.blob().then(function(blob){
                     let file = window.URL.createObjectURL(blob);
-                    window.location.assign(file);
+                    let link = document.createElement('a');
+                    link.href = file ;
+                    link.download = "score." + type ;
+                    link.click() ;
                 })
         }
     })

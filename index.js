@@ -3,8 +3,34 @@
 var express = require('express');
 var session = require('express-session');
 var app = express();
-var Json2csvparser = require('json2csv').Parser;
 const port = process.env.PORT || 3000
+
+const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
+const csvStringifierAnswers = createCsvStringifier({
+    header: [
+        {id: 'diapo', title:"DIAPO"},
+        {id: 'timing', title: "TIMING"},
+        {id: 'choice', title: "CHOICE"},
+        {id: 'value', title: "VALUE"},
+        {id: 'perf', title: "PERF"}
+    ]
+});
+const csvStringifierUser = createCsvStringifier({
+  header: [
+    {id: 'codepatient', title:"CODEPATIENT"},
+    {id: 'age', title:"AGE"},
+    {id: 'sex', title:"SEX"},
+    {id: 'lat', title:"LAT"},
+    {id: 'csp1', title:"CSP1"},
+    {id: 'csp2', title:"CSP2"},
+    {id: 'useragent', title:"USERAGENT"},
+    {id: 'goodanswers', title:"GOODANSWERS"},
+    {id: 'completetiming', title:"COMPLETETIMING"},
+    {id: 'avgtiming', title:"AVGTIMING"},
+    {id: 'globalperf', title:"GLOBALPERF"},
+    {id: 'indexperf', title:"INDEXPERF"}
+  ]
+});
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'));
@@ -56,16 +82,24 @@ app.get('/score', function(req, res){
               res.render('score', {user: user});
             },
             'application/json': function () {
-                res.json(user);
+              res.setHeader('Content-disposition', 'attachment; filename=score.json'); //do nothing
+              res.set('Content-Type', 'application/json');
+              res.json(user);
             },
 
             'application/csv': function () {
-                let fields = ["age","sex","lat","csp1","csp2","useragent","answers"];
-                let json2csvParser = new Json2csvparser({ fields })
-                let csv = json2csvParser.parse(user)
-                //res.setHeader('Content-disposition', 'attachment; filename=score.csv'); //do nothing
-                res.set('Content-Type', 'text/csv');
-                res.status(200).send(csv);
+              res.setHeader('Content-disposition', 'attachment; filename=score.csv'); //do nothing
+              res.set('Content-Type', 'text/csv');
+              let csv ;
+              //build a CSV string with csv-writer
+              let users = [user];
+              csv = csvStringifierUser.getHeaderString().concat(csvStringifierUser.stringifyRecords(users));
+              csv = csv.concat(csvStringifierAnswers.getHeaderString()).concat(csvStringifierAnswers.stringifyRecords(user.answers));
+              
+              console.log("csv", csv);              
+
+              res.end(csv);
+
             }
           })
     }
