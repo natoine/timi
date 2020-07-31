@@ -3,7 +3,6 @@
 var express = require('express');
 var session = require('express-session');
 var app = express();
-var Json2csvparser = require('json2csv').Parser;
 const port = process.env.PORT || 3000
 
 app.set('view engine', 'ejs')
@@ -62,12 +61,13 @@ app.get('/score', function(req, res){
             },
 
             'application/csv': function () {
-                let fields = ["age","sex","lat","csp1","csp2","useragent","answers"];
-                let json2csvParser = new Json2csvparser({ fields })
-                let csv = json2csvParser.parse(user)
-                res.setHeader('Content-disposition', 'attachment; filename=score.csv'); //do nothing
-                res.set('Content-Type', 'text/csv');
-                res.status(200).end(csv);
+              res.setHeader('Content-disposition', 'attachment; filename=score.csv'); //do nothing
+              res.set('Content-Type', 'text/csv');
+              let csv ;
+              //build a CSV string with csv-writer
+              
+              res.end(csv);
+
             }
           })
     }
