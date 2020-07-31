@@ -56,16 +56,19 @@ app.get('/score', function(req, res){
               res.render('score', {user: user});
             },
             'application/json': function () {
-                res.json(user);
+              res.setHeader('Content-disposition', 'attachment; filename=score.json'); //do nothing
+              res.set('Content-Type', 'application/json');
+              res.status(200).end(JSON.stringify(user));  
+              //res.json(user);
             },
 
             'application/csv': function () {
                 let fields = ["age","sex","lat","csp1","csp2","useragent","answers"];
                 let json2csvParser = new Json2csvparser({ fields })
                 let csv = json2csvParser.parse(user)
-                //res.setHeader('Content-disposition', 'attachment; filename=score.csv'); //do nothing
+                res.setHeader('Content-disposition', 'attachment; filename=score.csv'); //do nothing
                 res.set('Content-Type', 'text/csv');
-                res.status(200).send(csv);
+                res.status(200).end(csv);
             }
           })
     }
