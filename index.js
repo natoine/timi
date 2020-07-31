@@ -58,8 +58,7 @@ app.get('/score', function(req, res){
             'application/json': function () {
               res.setHeader('Content-disposition', 'attachment; filename=score.json'); //do nothing
               res.set('Content-Type', 'application/json');
-              res.status(200).end(JSON.stringify(user));  
-              //res.json(user);
+              res.json(user);
             },
 
             'application/csv': function () {
