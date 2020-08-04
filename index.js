@@ -153,11 +153,11 @@ app.post('/answer', function (req, res) {
       if(answer.value) countgoodanswers++ ;
       completetiming = completetiming + answer.timing ;
       performance = performance + answer.perf ;
-      answer.timing = answer.timing / 1000 ; // sec and no more ms
+      answer.timing = Math.round(answer.timing / 10) / 100 ; // sec and no more ms only 2 dec
     })
     req.session.user.goodanswers = countgoodanswers ;
-    req.session.user.completetiming = completetiming / 1000 ; // sec
-    req.session.user.avgtiming = (completetiming / 48) / 1000 ; //sec
+    req.session.user.completetiming = Math.round(completetiming / 10) / 100 ; // sec only 2 dec
+    req.session.user.avgtiming = Math.round((completetiming / 48) / 10 ) / 100 ; //sec
     req.session.user.globalperf = performance ;
     req.session.user.indexperf = req.session.user.avgtiming / countgoodanswers ;
 
