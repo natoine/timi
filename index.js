@@ -9,9 +9,9 @@ const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
 const csvStringifierAnswers = createCsvStringifier({
     header: [
         {id: 'diapo', title:"DIAPO"},
-        {id: 'timing', title: "TIMING"},
-        {id: 'choice', title: "CHOICE"},
-        {id: 'value', title: "VALUE"},
+        {id: 'timing', title: "TEMPS DE REPONSE"},
+        {id: 'choice', title: "CHOIX"},
+        {id: 'value', title: "VALEUR"},
         {id: 'perf', title: "PERF"}
     ]
 });
@@ -19,16 +19,16 @@ const csvStringifierUser = createCsvStringifier({
   header: [
     {id: 'codepatient', title:"CODEPATIENT"},
     {id: 'age', title:"AGE"},
-    {id: 'sex', title:"SEX"},
-    {id: 'lat', title:"LAT"},
+    {id: 'sex', title:"SEXE"},
+    {id: 'lat', title:"LATERALITE"},
     {id: 'csp1', title:"CSP1"},
     {id: 'csp2', title:"CSP2"},
     {id: 'useragent', title:"USERAGENT"},
-    {id: 'goodanswers', title:"GOODANSWERS"},
-    {id: 'completetiming', title:"COMPLETETIMING"},
-    {id: 'avgtiming', title:"AVGTIMING"},
-    {id: 'globalperf', title:"GLOBALPERF"},
-    {id: 'indexperf', title:"INDEXPERF"}
+    {id: 'goodanswers', title:"BONNES REPONSES"},
+    {id: 'completetiming', title:"TEMPS COMPLET"},
+    {id: 'avgtiming', title:"TEMPS DE REPONSE MOYEN"},
+    {id: 'globalperf', title:"PERF GLOBALE"},
+    {id: 'indexperf', title:"INDEX DE PERF"}
   ]
 });
 
@@ -38,9 +38,9 @@ app.use(express.json());
 const sessionpass = process.env.SESSIONPASS || "fordevsessionpass"
 app.use(session({secret: sessionpass, resave:true, saveUninitialized:true}));
 
-const goodanswers = ['left','left','right','left','right','left','right','left','right','right','left','right','left','right','right','left','right','right','left',
-  'right','left','right','right','left','left','left','right','right','left','right','left','left','right','left','left','right','right','left','left','right',
-  'left','left','left','right','right','left','right','right'] ;
+const goodanswers = ['gauche','gauche','droite','gauche','droite','gauche','droite','gauche','droite','droite','gauche','droite','gauche','droite','droite','gauche','droite','droite','gauche',
+  'droite','gauche','droite','droite','gauche','gauche','gauche','droite','droite','gauche','droite','gauche','gauche','droite','gauche','gauche','droite','droite','gauche','gauche','droite',
+  'gauche','gauche','gauche','droite','droite','gauche','droite','droite'] ;
 
 app.get('/', function (req, res) {
   res.render('index')

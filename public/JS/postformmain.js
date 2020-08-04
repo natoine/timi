@@ -10,8 +10,7 @@ function sendform(choice)
     let timing = Math.floor( (Date.now() - onloadingmoment - delay) ) ; // milliseconds
     let pathArray = window.location.pathname.split('/');
     let answer = {diapo: pathArray[2] , timing: timing, choice: choice}
-    console.log("answer", answer)
-
+   
     fetch('/answer', {
         method: 'POST',
         redirect: 'follow',
@@ -26,10 +25,10 @@ function sendform(choice)
 
 leftbtn.onclick = function()
 {
-    sendform("left");
+    sendform("gauche");
 }
 
 rightbtn.onclick = function()
 {
-    sendform("right");
+    sendform("droite");
 }
