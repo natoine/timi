@@ -14,7 +14,7 @@ html, body {
     height: 100%;
     display: grid ;
     grid-template-columns: [col1] 20%  [col2] auto [col3] 20% ;
-    grid-template-rows: [row1] 50% [row2] 40% [row3] 5% ;
+    grid-template-rows: [row1] 40% [row2] 50% [row3] 10% ;
     grid-template-areas: 
     ". hand ."
     "left hand right"
