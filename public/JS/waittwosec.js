@@ -11,10 +11,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
     setTimeout(switchvisibility, delay);
 })
-
-window.onload=function(){ 
-    setTimeout(function(){ 		
-        console.log("scroll");
-        window.scrollTo(0, 1); 	
-    }, delay); 
-}
