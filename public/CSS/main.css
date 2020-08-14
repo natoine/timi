@@ -39,4 +39,5 @@ html, body {
 
   .footer {
     grid-area: footer ;
+    color: white ;
   }
