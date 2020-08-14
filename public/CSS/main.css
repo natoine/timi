@@ -14,10 +14,11 @@ html, body {
     height: 100%;
     display: grid ;
     grid-template-columns: [col1] 20%  [col2] auto [col3] 20% ;
-    grid-template-rows: [row1] 70% [row2] auto ;
+    grid-template-rows: [row1] 65% [row2] 30% [row3] 5% ;
     grid-template-areas: 
     ". hand ."
-    "left hand right";
+    "left hand right"
+    ". footer .";
     justify-items: center;
     visibility: hidden;
   }
@@ -34,4 +35,8 @@ html, body {
 
   .right-arrow {
     grid-area: right ;
+  }
+
+  .footer {
+    grid-area: footer ;
   }
