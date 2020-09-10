@@ -53,7 +53,17 @@ app.get('/consignes', function (req, res) {
 
 app.get('/beforemain', function (req, res) {
   if(!req.session.user) res.redirect(307,'/') //cannot get to trial without a user
-  else res.render('beforemain')
+  else res.render('beforemain', {id: 21})
+})
+
+app.get('/beforemain2', function (req, res) {
+  if(!req.session.user) res.redirect(307,'/') //cannot get to trial without a user
+  else res.render('beforemain2', {id: 7})
+})
+
+app.get('/ready', function (req, res) {
+  if(!req.session.user) res.redirect(307,'/') //cannot get to trial without a user
+  else res.render('ready')
 })
 
 app.get('/main/:id', function (req, res) {
