@@ -44,7 +44,27 @@ const goodanswers = ['gauche','gauche','droite','gauche','droite','gauche','droi
 
 app.get('/', function (req, res) {
   res.render('index')
-});
+})
+
+app.get('/consignes', function (req, res) {
+  if(!req.session.user) res.redirect(307,'/') //cannot get to consignes without a user
+  else res.render('consignes')
+})
+
+app.get('/beforemain', function (req, res) {
+  if(!req.session.user) res.redirect(307,'/') //cannot get to trial without a user
+  else res.render('beforemain', {id: 21})
+})
+
+app.get('/beforemain2', function (req, res) {
+  if(!req.session.user) res.redirect(307,'/') //cannot get to trial without a user
+  else res.render('beforemain2', {id: 7})
+})
+
+app.get('/ready', function (req, res) {
+  if(!req.session.user) res.redirect(307,'/') //cannot get to trial without a user
+  else res.render('ready')
+})
 
 app.get('/main/:id', function (req, res) {
     if(!req.session.user) res.redirect(307,'/') //cannot start test without a user
@@ -114,7 +134,7 @@ app.post('/main', function (req, res) {
   let user = req.body.user ;
   req.session.user = user ;
   req.session.user.answers = [];
-  res.redirect(301, '/main/1');
+  res.redirect(301, 'consignes');
 })
 
 //receives answer

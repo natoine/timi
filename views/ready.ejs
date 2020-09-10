@@ -1,0 +1,25 @@
+<!-- views/ready.ejs -->
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>TIMI</title>
+    <meta descr="Testez votre capacité à reconnaître main droite et gauche">
+   
+</head>
+<body>
+
+    <div>
+        <p>Prêt à lancer le test</p>
+        <button id="rdybtn">Lancer le test !</button>
+    </div>
+    
+</body>
+
+</html>
+
+<script>
+    document.getElementById("rdybtn").onclick = function() {
+        location.href = "/main/1"
+    }
+</script>

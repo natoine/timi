@@ -1,4 +1,4 @@
-<!-- views/main.ejs -->
+<!-- views/beforemain.ejs -->
 <!doctype html>
 <html lang="fr">
 <head>
@@ -21,7 +21,15 @@
     </div>
 
     <script src="/JS/waittwosec.js"></script>
-    <script src="/JS/postformmain.js"></script>
+    
 </body>
 
 </html>
+
+<script>
+    function next() {
+        location.href = "/beforemain2"
+    } 
+    document.getElementById("leftbtn").onclick = next
+    document.getElementById("rightbtn").onclick = next
+</script>
