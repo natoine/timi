@@ -159,7 +159,7 @@ app.post('/answer', function (req, res) {
     req.session.user.completetiming = Math.round(completetiming / 10) / 100 ; // sec only 2 dec
     req.session.user.avgtiming = Math.round((completetiming / 48) / 10 ) / 100 ; //sec
     req.session.user.globalperf = performance ;
-    req.session.user.indexperf = req.session.user.avgtiming / countgoodanswers ;
+    req.session.user.indexperf = Math.round(req.session.user.avgtiming / countgoodanswers * 10000 )/10000; // only 4 dec
 
     //redircet to score
     res.redirect(301, '/score');
