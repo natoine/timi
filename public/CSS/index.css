@@ -1,0 +1,13 @@
+
+html, body {
+    height: 100%;
+    display: grid;
+  }
+
+  main {
+    margin: 0 auto;
+  }
+
+.form {
+    margin-top: 5px;
+}
