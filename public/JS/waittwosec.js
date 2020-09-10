@@ -3,7 +3,8 @@
 var delay = 2000 ;
 
 function switchvisibility(){
-    document.getElementById("waitcontent").style.visibility = "hidden" ;
+    var wait = document.getElementById("waitcontent") ;
+    wait.remove();
     document.getElementById("maincontent").style.visibility = "visible" ;
 }
 

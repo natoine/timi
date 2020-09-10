@@ -6,19 +6,14 @@ html, body {
     height: 100%;
   }
 
-.wait {
-  visibility: visible;
-}
-
 .container {
     height: 100%;
     display: grid ;
     grid-template-columns: [col1] 20%  [col2] auto [col3] 20% ;
-    grid-template-rows: [row1] 40% [row2] 50% [row3] 10% ;
+    grid-template-rows: [row1] 50% [row2] 40% ;
     grid-template-areas: 
     ". hand ."
-    "left hand right"
-    ". footer .";
+    "left hand right";
     justify-items: center;
     visibility: hidden;
   }
@@ -29,15 +24,11 @@ html, body {
 
   .hand {
     grid-area: hand ;
-    height: 100%; 
+    display: block;
     width: 100%;
+    height: auto;
   }
 
   .right-arrow {
     grid-area: right ;
-  }
-
-  .footer {
-    grid-area: footer ;
-    color: white ;
   }
