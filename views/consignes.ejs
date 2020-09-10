@@ -1,0 +1,24 @@
+<!-- views/consignes.ejs -->
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>TIMI</title>
+    <meta descr="Testez votre capacité à reconnaître main droite et gauche">
+   
+</head>
+<body>
+    
+    <main>
+        <h1>les consignes !</h1>
+
+        <button id="consignesred" type="button">Passer à la suite !</button>
+    </main>
+</body>
+</html>
+
+<script>
+    document.getElementById("consignesred").onclick = function () {
+        location.href = "/beforemain"
+    }
+</script>
