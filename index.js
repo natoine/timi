@@ -27,7 +27,7 @@ const csvStringifierUser = createCsvStringifier({
     {id: 'goodanswers', title:"BONNES REPONSES"},
     {id: 'completetiming', title:"TEMPS COMPLET"},
     {id: 'avgtiming', title:"TEMPS DE REPONSE MOYEN"},
-    {id: 'globalperf', title:"PERF GLOBALE"},
+    {id: 'globalperf', title:"SCORE BAREME"},
     {id: 'indexperf', title:"INDEX DE PERF"}
   ]
 });
