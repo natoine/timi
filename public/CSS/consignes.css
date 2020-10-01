@@ -1,0 +1,9 @@
+html, body {
+    height: 100%;
+  }
+
+.consignes {
+    height: 100%;
+    display: grid ;
+    justify-items: center;
+}
