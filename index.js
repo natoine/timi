@@ -211,7 +211,8 @@ app.get('/variablesdgpdhb', function(req, res){
       {
         let answer = answers[i];
         csv = csv.concat("" + user.codepatient + ";");
-        csv = csv.concat("" + i + ";");
+        let countitem = i + 1 ;
+        csv = csv.concat("" + countitem + ";");
         let goodanswer = goodanswers[i]
         if(goodanswer === "droite") csv = csv.concat("D ;");
         else csv = csv.concat("G ;");
