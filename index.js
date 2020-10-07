@@ -42,10 +42,10 @@ const goodanswers = ['gauche','gauche','droite','gauche','droite','gauche','droi
   'droite','gauche','droite','droite','gauche','gauche','gauche','droite','droite','gauche','droite','gauche','gauche','droite','gauche','gauche','droite','droite','gauche','gauche','droite',
   'gauche','gauche','gauche','droite','droite','gauche','droite','droite'] ;
 
-const palmairedorsal = ['P', 'D', 'D', 'D', 'P', 'P', 'D', 'D', 'P', 'P', 'D', 'D', 'D', 'P', 'D', 'P', 'P', 'D', 'P', 'P', 'D', 'D', 'P', 'P', 'D', 'P', 'D', 'P', 'D', 'D', 'P',
+const palmairedorsals = ['P', 'D', 'D', 'D', 'P', 'P', 'D', 'D', 'P', 'P', 'D', 'D', 'D', 'P', 'D', 'P', 'P', 'D', 'P', 'P', 'D', 'D', 'P', 'P', 'D', 'P', 'D', 'P', 'D', 'D', 'P',
 'D', 'D', 'D', 'P', 'P', 'P', 'P', 'D', 'D', 'P', 'D', 'P', 'P', 'D', 'P', 'D', 'P'];
 
-const orientation = ['120', '300', '300', '180', '120', '0', '0', '120', '60', '240', '300', '240', '240', '240', '180', '0', '120', '120', '240', '0', '0', '180',
+const orientations = ['120', '300', '300', '180', '120', '0', '0', '120', '60', '240', '300', '240', '240', '240', '180', '0', '120', '120', '240', '0', '0', '180',
 '0', '240', '0', '300', '60', '180', '240', '300', '180', '60', '120', '120', '60', '180', '300', '300', '180', '240', '180', '60', '60', '60', '60', '120', '0', '300'];
 
 app.get('/', function (req, res) {
@@ -184,6 +184,88 @@ app.get('/consistancetiming', function(req, res){
       for (var i=0; i<questioncount ; i++)
       {
         csv = csv.concat("" + answers[i].timing + ";");
+      }
+      res.end(csv);
+    }
+  }
+})
+
+app.get('/variablesdgpdhb', function(req, res){
+  let user = req.session.user ;
+  if(!user) res.redirect(307, "/");
+  else if(user.answers.length === 0) res.redirect(307, "/");
+  else {
+    let questioncount = user.answers.length ;
+    if(questioncount < 48) res.redirect(307, '/main/' + questioncount)
+    else {
+
+      res.setHeader('Content-disposition', 'attachment; filename=variablesdgpdhb.csv'); //do nothing
+      res.set('Content-Type', 'text/csv');
+      let csv ;
+      csv = "Code_Patient ; Item ;	Droite_Gauche ;	Dorsal_Palmaire ;	Orientation ;	Score_Gauche	; Score_Droite	; Temps_Reponse_Gauche	;" ;
+      csv = csv.concat("Temps_Reponse_Droite	; Score_Dorsal	; Score_Palmaire	; Temps_Reponse_Dorsal	; Temps_Reponse_Palmaire	; Score_Orientation_Haut_0_60_300	;" );
+      csv= csv.concat( "Score_Orientation_Bas_120_180_240	; Temps_Reponse_Orientation_Haut_0_60_300	; Temps_Reponse_Orientation_Bas_120_180_240") ;
+      csv = csv.concat("\n");
+      let answers = user.answers ;
+      for (var i=0; i<questioncount ; i++)
+      {
+        let answer = answers[i];
+        csv = csv.concat("" + user.codepatient + ";");
+        csv = csv.concat("" + i + ";");
+        let goodanswer = goodanswers[i]
+        if(goodanswer === "droite") csv = csv.concat("D ;");
+        else csv = csv.concat("G ;");
+        let palmairedorsal = palmairedorsals[i] ;
+        csv = csv.concat( palmairedorsal + ";");
+        let orientation = orientations[i] ;
+        csv = csv.concat("" + orientation + ";");
+        if(goodanswer === "gauche") {
+          if(answer.value) csv = csv.concat("" + 1 + ";");
+          else csv = csv.concat("" + 0 + ";");
+          csv = csv.concat("NA;");
+          csv = csv.concat(""+answer.timing+";");
+          csv = csv.concat("NA;");
+        }
+        else {
+          csv = csv.concat("NA;");
+          if(answer.value) csv = csv.concat("" + 1 + ";");
+          else csv = csv.concat("" + 0 + ";");
+          csv = csv.concat("NA;");
+          csv = csv.concat(""+answer.timing+";");
+        }
+
+        if(palmairedorsal === "D") {
+          if(answer.value) csv = csv.concat("" + 1 + ";");
+          else csv = csv.concat("" + 0 + ";");
+          csv = csv.concat("NA;");
+          csv = csv.concat(""+answer.timing+";");
+          csv = csv.concat("NA;");
+        }
+        else {
+          csv = csv.concat("NA;");
+          if(answer.value) csv = csv.concat("" + 1 + ";");
+          else csv = csv.concat("" + 0 + ";");
+          csv = csv.concat("NA;");
+          csv = csv.concat(""+answer.timing+";");
+        }
+
+        if(orientation == 0 || orientation == 60 || orientation == 300)
+        {
+          if(answer.value) csv = csv.concat("" + 1 + ";");
+          else csv = csv.concat("" + 0 + ";");
+          csv = csv.concat("NA;");
+          csv = csv.concat(""+answer.timing+";");
+          csv = csv.concat("NA;");
+        }
+        else {
+          csv = csv.concat("NA;");
+          if(answer.value) csv = csv.concat("" + 1 + ";");
+          else csv = csv.concat("" + 0 + ";");
+          csv = csv.concat("NA;");
+          csv = csv.concat(""+answer.timing+";");
+        }
+
+        csv = csv.concat("\n");
       }
       res.end(csv);
     }
