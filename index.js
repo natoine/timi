@@ -202,9 +202,9 @@ app.get('/variablesdgpdhb', function(req, res){
       res.setHeader('Content-disposition', 'attachment; filename=variablesdgpdhb.csv'); //do nothing
       res.set('Content-Type', 'text/csv');
       let csv ;
-      csv = "Code_Patient ; Item ;	Droite_Gauche ;	Dorsal_Palmaire ;	Orientation ;	Score_Gauche	; Score_Droite	; Temps_Reponse_Gauche	;" ;
-      csv = csv.concat("Temps_Reponse_Droite	; Score_Dorsal	; Score_Palmaire	; Temps_Reponse_Dorsal	; Temps_Reponse_Palmaire	; Score_Orientation_Haut_0_60_300	;" );
-      csv= csv.concat( "Score_Orientation_Bas_120_180_240	; Temps_Reponse_Orientation_Haut_0_60_300	; Temps_Reponse_Orientation_Bas_120_180_240") ;
+      csv = "Code_Patient;Item;Droite_Gauche;Dorsal_Palmaire;Orientation;Score_Gauche;Score_Droite;Temps_Reponse_Gauche;" ;
+      csv = csv.concat("Temps_Reponse_Droite;Score_Dorsal;Score_Palmaire;Temps_Reponse_Dorsal;Temps_Reponse_Palmaire;Score_Orientation_Haut_0_60_300;" );
+      csv= csv.concat( "Score_Orientation_Bas_120_180_240;Temps_Reponse_Orientation_Haut_0_60_300;Temps_Reponse_Orientation_Bas_120_180_240") ;
       csv = csv.concat("\n");
       let answers = user.answers ;
       for (var i=0; i<questioncount ; i++)
