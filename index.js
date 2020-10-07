@@ -143,6 +143,13 @@ app.get('/consistancescore', function(req, res){
       {
         csv = csv.concat("Score_Item_" + i + " ;")
       }
+      csv = csv.concat("\n");
+      csv = csv.concat("" + user.codepatient + ";");
+      let answers = user.answers ;
+      for (var i=0; i<questioncount ; i++)
+      {
+        csv = csv.concat("" + answers[i].perf + ";");
+      }
       res.end(csv);
     }
   }
