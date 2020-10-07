@@ -155,6 +155,34 @@ app.get('/consistancescore', function(req, res){
   }
 })
 
+app.get('/consistancetiming', function(req, res){
+  let user = req.session.user ;
+  if(!user) res.redirect(307, "/");
+  else if(user.answers.length === 0) res.redirect(307, "/");
+  else {
+    let questioncount = user.answers.length ;
+    if(questioncount < 48) res.redirect(307, '/main/' + questioncount)
+    else {
+
+      res.setHeader('Content-disposition', 'attachment; filename=consistancetiming.csv'); //do nothing
+      res.set('Content-Type', 'text/csv');
+      let csv ;
+      csv = "Code_Participant ;" ;
+      for (var i=1; i<=48 ; i++)
+      {
+        csv = csv.concat("Temps_de_Reponse_Item_" + i + " ;")
+      }
+      csv = csv.concat("\n");
+      csv = csv.concat("" + user.codepatient + ";");
+      let answers = user.answers ;
+      for (var i=0; i<questioncount ; i++)
+      {
+        csv = csv.concat("" + answers[i].timing + ";");
+      }
+      res.end(csv);
+    }
+  }
+})
 
 //receives index form with patient data
 //redirects to the first hand picture test

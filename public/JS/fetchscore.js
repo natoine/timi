@@ -26,7 +26,7 @@ document.getElementById("csvbtn").onclick = function(){fetchscore("csv")};
 
 document.getElementById("jsonbtn").onclick = function(){fetchscore("json")};
 
-function fetchconsistance(){
+function fetchconsistancescore(){
     fetch('/consistancescore',{
         method:'GET',
         redircet: 'follow',
@@ -48,4 +48,28 @@ function fetchconsistance(){
     })
 }
 
-document.getElementById("consistance_scorebtn").onclick = function(){fetchconsistance()};
+document.getElementById("consistance_scorebtn").onclick = function(){fetchconsistancescore()};
+
+function fetchconsistancetiming(){
+    fetch('/consistancetiming',{
+        method:'GET',
+        redircet: 'follow',
+        headers: {
+            'Accept': 'application/csv'
+        }
+    }).then(function(response){
+        if (response.redirected) window.location.href = response.url;
+        else 
+        {
+                response.blob().then(function(blob){
+                    let file = window.URL.createObjectURL(blob);
+                    let link = document.createElement('a');
+                    link.href = file ;
+                    link.download = "consistancetiming.csv" ;
+                    link.click() ;
+                })
+        }
+    })
+}
+
+document.getElementById("consistance_timingbtn").onclick = function(){fetchconsistancetiming()};
