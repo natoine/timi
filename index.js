@@ -116,12 +116,34 @@ app.get('/score', function(req, res){
               csv = csvStringifierUser.getHeaderString().concat(csvStringifierUser.stringifyRecords(users));
               csv = csv.concat(csvStringifierAnswers.getHeaderString()).concat(csvStringifierAnswers.stringifyRecords(user.answers));
               
-              console.log("csv", csv);              
+              //console.log("csv", csv);              
 
               res.end(csv);
 
             }
           })
+    }
+  }
+})
+
+app.get('/consistancescore', function(req, res){
+  let user = req.session.user ;
+  if(!user) res.redirect(307, "/");
+  else if(user.answers.length === 0) res.redirect(307, "/");
+  else {
+    let questioncount = user.answers.length ;
+    if(questioncount < 48) res.redirect(307, '/main/' + questioncount)
+    else {
+
+      res.setHeader('Content-disposition', 'attachment; filename=consistancescore.csv'); //do nothing
+      res.set('Content-Type', 'text/csv');
+      let csv ;
+      csv = "Code_Participant ;" ;
+      for (var i=1; i<=48 ; i++)
+      {
+        csv = csv.concat("Score_Item_" + i + " ;")
+      }
+      res.end(csv);
     }
   }
 })
