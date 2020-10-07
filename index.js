@@ -42,6 +42,9 @@ const goodanswers = ['gauche','gauche','droite','gauche','droite','gauche','droi
   'droite','gauche','droite','droite','gauche','gauche','gauche','droite','droite','gauche','droite','gauche','gauche','droite','gauche','gauche','droite','droite','gauche','gauche','droite',
   'gauche','gauche','gauche','droite','droite','gauche','droite','droite'] ;
 
+const palmairedorsal = ['P', 'D', 'D', 'D', 'P', 'P', 'D', 'D', 'P', 'P', 'D', 'D', 'D', 'P', 'D', 'P', 'P', 'D', 'P', 'P', 'D', 'D', 'P', 'P', 'D', 'P', 'D', 'P', 'D', 'D', 'P',
+'D', 'D', 'D', 'P', 'P', 'P', 'P', 'D', 'D', 'P', 'D', 'P', 'P', 'D', 'P', 'D', 'P'];
+
 app.get('/', function (req, res) {
   res.render('index')
 })
