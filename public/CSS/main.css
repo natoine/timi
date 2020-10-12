@@ -21,7 +21,7 @@ html, body {
   .hand {
     grid-area: hand ;
     display: block;
-    width: 80%;
+    width: 70%;
     height: auto;
   }
 
