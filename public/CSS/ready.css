@@ -1,9 +1,17 @@
 html, body {
-    height: 100%;
-  }
+  height: 100%;
+  background-color: #ebecf0;
+  display: grid ;
+}
 
-.container {
-    height: 100%;
-    display: grid ;
-    justify-items: center;
+main {
+  margin: 0 auto;
+}
+
+.main-content {
+display: grid ;
+justify-items: center;
+background-color: whitesmoke;
+margin: 1em;
+padding: 1em;
 }

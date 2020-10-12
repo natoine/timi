@@ -11,6 +11,7 @@
 <body>
     
     <main>
+        <div class="main-content">
     
         <h1>Bienvenue sur l'application TIMI !</h1>
 
@@ -48,11 +49,11 @@
         </div>
         <div class="form">
             <label for="csp1">Catégorie Socio-Professionnelle Parent 1 :</label>
-            <input list="csp" id="csp1" name="csp1" />
+            <input list="csp" id="csp1" name="csp1"/>
         </div>
         <div class="form">
             <label for="csp2">Catégorie Socio-Professionnelle Parent 2 :</label>
-            <input list="csp" id="csp2" name="csp2" />
+            <input list="csp" id="csp2" name="csp2"/>
             <datalist id="csp">
 
                 <option value="1. Agriculteurs exploitants"></option>
@@ -70,10 +71,18 @@
           <button type="button" id="submitbutton">Passer aux consignes !</button>
         </div>
       </form>
-
+    </div>
     </main>
 
 <script src="/JS/postformindex.js">
+</script>
+    
+<script>
+    var csp1 = document.getElementById('csp1') ;
+    csp1.onmousedown = function(){this.value = ''};
+
+    var csp2 = document.getElementById('csp2') ;
+    csp2.onmousedown = function(){this.value = ''};
 </script>
 
 </body>
