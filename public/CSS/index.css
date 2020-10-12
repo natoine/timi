@@ -1,11 +1,17 @@
-
 html, body {
     height: 100%;
     display: grid;
+    background-color: #ebecf0;
   }
 
   main {
     margin: 0 auto;
+  }
+
+.main-content {
+  background-color: whitesmoke;
+  margin: 1em;
+  padding: 1em;
   }
 
 .form {
