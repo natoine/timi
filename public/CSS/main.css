@@ -31,3 +31,9 @@ html, body {
   .right-arrow {
     grid-area: right ;
   }
+
+  .wait{
+    display: grid ;
+    justify-items: center;
+    font-size: 32px;
+  }
