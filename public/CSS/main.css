@@ -1,6 +1,13 @@
+button {
+  font-family:arial, sans-serif;
+  font-size: 24px;
+}
+
 html, body {
     height: 80vh;
-    background-color: #ebecf0;
+    background-color: white;
+    font-family:arial, sans-serif;
+    font-size: 16px;
   }
 
 .container {
@@ -28,4 +35,10 @@ html, body {
 
   .right-arrow {
     grid-area: right ;
+  }
+
+  .wait{
+    display: grid ;
+    justify-items: center;
+    font-size: 32px;
   }
