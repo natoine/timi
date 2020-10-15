@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     display: grid;
     background-color: #ebecf0;
+    font-family:arial, sans-serif;
   }
 
   main {
@@ -12,6 +13,7 @@ html, body {
   background-color: whitesmoke;
   margin: 1em;
   padding: 1em;
+  font-size: 16px;
   }
 
 .form {
