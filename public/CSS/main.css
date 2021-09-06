@@ -13,10 +13,10 @@ html, body {
 .container {
     height: 100%;
     display: grid ;
-    grid-template-columns: [col1] 20%  [col2] auto [col3] 20% ;
-    grid-template-rows: [row1] 60% [row2] 40% ;
+    grid-template-columns: [col1] 25%  [col2] auto [col3] 25% ;
+    grid-template-rows: [row1] 90% [row2] 10% ;
     grid-template-areas: 
-    ". hand ."
+    "left hand right"
     "left hand right";
     justify-items: center;
     visibility: hidden;
